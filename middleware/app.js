@@ -5,22 +5,20 @@ const app = express();
 //order of middleware execution demostrated:
 //app.use(middleware2) 
 
-
-
-app.use(middleware)
-
-function middleware(req, res, next) {
-    console.log('I am middleware1');
-
-    const errObj = new Error('I am an error')
-
-    next(errObj);
+function errorHandler(err, req, res, next) {
+    res.json({ err: err });
 }
 
-/* function middleware2(req, res, next) {
-    console.log('I am middleware2');
+function middleware1(req, res, next) {
+    req.customProperty = 100;
     next();
-} */
+}
+
+function middleware2(req, res, next) {
+    console.log(`The custom property value is: ${req.customProperty}`);
+    req.customProperty = 600
+    next();
+}
 
 /* function middleware3(req, res, next) {
     console.log('I am middleware3');
@@ -32,29 +30,18 @@ function middleware(req, res, next) {
     responseObject.send('<h1>Hello World</h1>')
 } */
 
-function errorHandler(err, req, res, next) {
-    if (err) {
-        res.send('<h1>There was an error, please try again.</h1>')
-    }
-}
+app.use(middleware1)
+app.use(middleware2)
 
 /* function errorHandler (err, req, res, next) {
     if (err.status === )
 } */
 
+app.get('/', (req, res, next) => {
+    res.send(`<h1>The value is: ${req.customProperty} </h1>`)
+});
 
-/* app.get('/', (requestObject, responseObject, nextMiddleware) => {
-    console.log('I am the standard Express function')
-    responseObject.send('<h1>Hello World</h1>')
-}); */
 
-/*
- order of middleware execution
- 1. middleware2 invoked on line 6
- 2. middleware1 invoked on line 7
- 3. middleware3 invoked in app.get as a callback method on line 29
- 4. anonymous middleware written out and invoked as an explicit callback in app.get on line 29 
-*/
 app.use(errorHandler)
     /*
         Place errorhandler middleware after all other middleware
