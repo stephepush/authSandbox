@@ -1,0 +1,19 @@
+{
+  "name": "auth-sandbox",
+  "version": "1.0.0",
+  "description": "Learning and practicing auth concepts in Node/Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephepush/authSandbox.git"
+  },
+  "author": "Stephen Peters",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stephepush/authSandbox/issues"
+  },
+  "homepage": "https://github.com/stephepush/authSandbox#readme"
+}
