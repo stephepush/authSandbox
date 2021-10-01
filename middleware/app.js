@@ -5,8 +5,8 @@ const app = express();
 //order of middleware execution demostrated:
 //app.use(middleware2) 
 
-app.use(errorHandler)
-    //order you call middleware in matters
+
+
 app.use(middleware)
 
 function middleware(req, res, next) {
@@ -55,5 +55,10 @@ function errorHandler(err, req, res, next) {
  3. middleware3 invoked in app.get as a callback method on line 29
  4. anonymous middleware written out and invoked as an explicit callback in app.get on line 29 
 */
-
+app.use(errorHandler)
+    /*
+        Place errorhandler middleware after all other middleware
+        If there are any errors in any of the routes, 
+        it will be passed to the final errorhandler middleware
+    */
 app.listen(3000);
