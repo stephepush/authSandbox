@@ -2,8 +2,9 @@ const express = require('express');
 
 const app = express();
 
-app.use(middleware1) /*middleware1 becomes a middleware of the global scope*/
-app.use(middleware2)
+
+app.use(middleware2) //order of middleware execution demostrated
+app.use(middleware1)
 
 function middleware1(req, res, next) {
     console.log('I am middleware1');
