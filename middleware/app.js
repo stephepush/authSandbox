@@ -16,12 +16,19 @@ function middleware2(req, res, next) {
     next();
 }
 
-
-function standardExpressCallback(requestObject, responseObject, nextMiddleware) {
-    console.log('I am the standard Express function')
-    responseObject.send('<h1>Hello World</h1>')
+function middleware3(req, res, next) {
+    console.log('I am middleware3');
+    next();
 }
 
-app.get('/', standardExpressCallback);
+/* function standardExpressCallback(requestObject, responseObject, nextMiddleware) {
+    console.log('I am the standard Express function')
+    responseObject.send('<h1>Hello World</h1>')
+} */
+
+app.get('/', middleware3, (requestObject, responseObject, nextMiddleware) => {
+    console.log('I am the standard Express function')
+    responseObject.send('<h1>Hello World</h1>')
+});
 
 app.listen(3000);
