@@ -31,4 +31,12 @@ app.get('/', middleware3, (requestObject, responseObject, nextMiddleware) => {
     responseObject.send('<h1>Hello World</h1>')
 });
 
+/*
+ order of middleware execution
+ 1. middleware2 invoked on line 6
+ 2. middleware1 invoked on line 7
+ 3. middleware3 invoked in app.get as a callback method on line 29
+ 4. anonymous middleware written out and invoked as an explicit callback in app.get on line 29 
+*/
+
 app.listen(3000);
