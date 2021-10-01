@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/stephepush/authSandbox/issues"
   },
-  "homepage": "https://github.com/stephepush/authSandbox#readme"
+  "homepage": "https://github.com/stephepush/authSandbox#readme",
+  "dependencies": {
+    "nodemon": "^2.0.13"
+  }
 }
