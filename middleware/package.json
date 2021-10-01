@@ -1,23 +1,26 @@
 {
-  "dependencies": {
-    "express": "^4.17.1"
-  },
-  "name": "middleware",
-  "version": "1.0.0",
-  "description": "auth-sandbox-middleware",
-  "main": "app.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stephepush/authSandbox.git"
-  },
-  "author": "Stephen Peters",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stephepush/authSandbox/issues"
-  },
-  "homepage": "https://github.com/stephepush/authSandbox#readme"
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "name": "middleware",
+    "version": "1.0.0",
+    "description": "auth-sandbox-middleware",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npx nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/stephepush/authSandbox.git"
+    },
+    "author": "Stephen Peters",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/stephepush/authSandbox/issues"
+    },
+    "homepage": "https://github.com/stephepush/authSandbox#readme",
+    "devDependencies": {
+        "nodemon": "^2.0.13"
+    }
 }
