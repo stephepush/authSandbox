@@ -2,34 +2,48 @@ const express = require('express');
 
 const app = express();
 
+//order of middleware execution demostrated:
+//app.use(middleware2) 
+app.use(middleware)
 
-app.use(middleware2) //order of middleware execution demostrated
-app.use(middleware1)
-
-function middleware1(req, res, next) {
+function middleware(req, res, next) {
     console.log('I am middleware1');
-    next();
+
+    const errObj = new Error('I am an error')
+
+    next(errObj);
 }
 
-function middleware2(req, res, next) {
+/* function middleware2(req, res, next) {
     console.log('I am middleware2');
     next();
-}
+} */
 
-function middleware3(req, res, next) {
+/* function middleware3(req, res, next) {
     console.log('I am middleware3');
     next();
-}
+} */
 
 /* function standardExpressCallback(requestObject, responseObject, nextMiddleware) {
     console.log('I am the standard Express function')
     responseObject.send('<h1>Hello World</h1>')
 } */
 
-app.get('/', middleware3, (requestObject, responseObject, nextMiddleware) => {
+function errorHandler(err, req, res, next) {
+    if (err) {
+        res.send('<h1>There was an error, please try again.</h1>')
+    }
+}
+
+/* function errorHandler (err, req, res, next) {
+    if (err.status === )
+} */
+
+
+/* app.get('/', (requestObject, responseObject, nextMiddleware) => {
     console.log('I am the standard Express function')
     responseObject.send('<h1>Hello World</h1>')
-});
+}); */
 
 /*
  order of middleware execution
