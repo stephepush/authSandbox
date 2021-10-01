@@ -1,8 +1,12 @@
 {
-  "name": "auth-sandbox",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "name": "middleware",
   "version": "1.0.0",
-  "description": "Learning and practicing auth concepts in Node/Express",
+  "description": "auth-sandbox-middleware",
   "main": "app.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +15,9 @@
     "url": "git+https://github.com/stephepush/authSandbox.git"
   },
   "author": "Stephen Peters",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/stephepush/authSandbox/issues"
   },
-  "homepage": "https://github.com/stephepush/authSandbox#readme",
-  "dependencies": {
-    "nodemon": "^2.0.13"
-  }
+  "homepage": "https://github.com/stephepush/authSandbox#readme"
 }
