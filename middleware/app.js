@@ -4,8 +4,10 @@ const app = express();
 
 //order of middleware execution demostrated:
 //app.use(middleware2) 
-app.use(middleware)
+
 app.use(errorHandler)
+    //order you call middleware in matters
+app.use(middleware)
 
 function middleware(req, res, next) {
     console.log('I am middleware1');
