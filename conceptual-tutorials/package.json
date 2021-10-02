@@ -1,11 +1,18 @@
 {
-  "name": "conceptual-tutorials",
-  "version": "1.0.0",
-  "description": "Intro to/working with express-sessions",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Stephen Peters",
-  "license": "MIT"
+    "name": "conceptual-tutorials",
+    "version": "1.0.0",
+    "description": "Intro to/working with express-sessions",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npx nodemon app.js"
+    },
+    "author": "Stephen Peters",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.13"
+    }
 }
