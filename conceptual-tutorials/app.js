@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 const session = require('express-session');
 const mysql2 = require('mysql2');
@@ -33,7 +34,14 @@ app.use(session({
 }))
 
 app.get('/', (req, res, next) => {
-    res.send('<h1>Hello Word (Sessions)</h1>')
+    console.log(req.session)
+    if (req.session.viewCount) {
+        req.session.viewCount = req.session.viewCount + 1;
+    } else {
+        req.session.viewCount = 1;
+    }
+
+    res.send(`<h1>You have visited this page ${req.session.viewCount} times.</h1>`)
 });
 
 app.listen(3000)
