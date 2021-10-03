@@ -1,0 +1,21 @@
+{
+    "name": "express_session_auth_starter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npx nodemon app.js"
+    },
+    "author": "Stephen Peters",
+    "license": "MIT",
+    "devDependencies": {
+        "nodemon": "^2.0.13"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "express-mysql-session": "^2.1.7",
+        "express-session": "^1.17.2",
+        "mysql2": "^2.3.0"
+    }
+}
