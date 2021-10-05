@@ -38,6 +38,8 @@ app.use(session({
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
  */
+require('./config/passport')
+
 app.use(passport.initialize());
 app.use(passport.session())
     /**
