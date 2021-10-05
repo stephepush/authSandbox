@@ -1,4 +1,3 @@
-const e = require('express');
 const express = require('express');
 const session = require('express-session');
 const mysql2 = require('mysql2');
@@ -20,7 +19,7 @@ const options = {
 
 const connection = mysql2.createPool(options).promise();
 const sessionStore = new MySQLStore({}, connection);
-
+//^ if you're wondering what connection refers to, look at line 20
 
 //express-session session options
 app.use(session({

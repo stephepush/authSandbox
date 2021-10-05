@@ -1,4 +1,4 @@
-const mysql2 = require('mysql2');
+const mysql2 = require('mysql2/promise');
 
 const pool = {
         host: 'localhost',
@@ -7,6 +7,9 @@ const pool = {
         password: 'hello',
         database: 'es_starter'
     } //maybe should be const options
+
+const connection = mysql2.createPool(pool);
+
 
 class User {
     constructor(user_id, username, hash, salt) {
@@ -19,6 +22,6 @@ class User {
 
 
 module.exports = {
-    promisePool: pool.promise(),
+    connection: connection,
     User: User
 };
