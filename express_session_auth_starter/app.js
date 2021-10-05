@@ -22,8 +22,18 @@ app.use(express.urlencoded({ extended: true }))
 /**
  * -------------- SESSION SETUP ----------------
  */
-
+/*the values connection holds are promisified in the config/database.js file*/
 const sessionStore = new MySQLStore({}, connection)
+
+app.use(session({
+    secret: 'some secret',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 //equals one day
+    }
+}))
 
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
