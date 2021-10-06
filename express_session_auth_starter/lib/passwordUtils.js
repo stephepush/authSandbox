@@ -1,12 +1,12 @@
-//Todo
+const crypto = require('crypto');
 
 
 
 function genPassword(password) {
-    var salt = crypto.randomBytes(32).toString('hex'); //seasoning recipe
-    var genHash = crypto.pbjdf2Sync(password, salt, 10000, 64, sha512)
-        .toString('hex');
-
+    let salt = crypto.randomBytes(32).toString('hex'); //seasoning recipe
+    let genHash = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
+    console.log(salt)
+    console.log(genHash)
     return {
         salt: salt,
         hash: genHash
