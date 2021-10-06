@@ -24,6 +24,12 @@ class User {
             "SELECT * FROM users WHERE username = ?", [username]
         )
     };
+
+    save() {
+        return connection.execute(
+            "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)", [this.username, this.hash, this.salt] //do i need to use 'this'?
+        )
+    }
 }
 
 
