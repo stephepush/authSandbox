@@ -2,3 +2,41 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const connection = require('./database');
 const { User } = require('./database')
+
+const customFields = {
+    /*Changes what field attributes passport looks for*/
+    usernameFIeld: 'uname',
+    passwordField: 'pw'
+}
+
+/*the following function is a es6/promisified twist of 
+whats found in the passport documentation
+its promisified and modularized to make the code easier
+to read*/
+const verifyCallback = (username, password, done) => {
+
+    User.findOne({ username: username })
+        /*User.findOne references static class method in
+        database.js*/
+        .then((user) => {
+            //^returns user
+            if (!user) { return done(null, false) }
+            //no error, but also no user
+
+            const isValid = validPassword(password, user.hash, user.salt)
+                //^comparing user entered password to hash and salt
+
+            if (isValid) {
+                return done(null, user);
+                //sucessfully authenticates
+            } else {
+                return done(null, false)
+                    //unsuccesfully authenticated, don't allow
+            }
+        })
+        .catch((err) => {
+            done(err)
+        });
+}
+
+const strategy = new LocalStrategy();
