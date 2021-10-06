@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const connection = require('./database');
 const { User } = require('./database')
+const validatesPassword = require('../lib/passwordUtils').validatesPassword;
 
 const customFields = {
     /*Changes what field attributes passport looks for*/
@@ -23,7 +24,7 @@ const verifyCallback = (username, password, done) => {
             if (!user) { return done(null, false) }
             //no error, but also no user
 
-            const isValid = validPassword(password, user.hash, user.salt)
+            const isValid = validatesPassword(password, user.hash, user.salt)
                 //^comparing user entered password to hash and salt
 
             if (isValid) {
