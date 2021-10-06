@@ -18,6 +18,10 @@ class User {
         this.hash = hash;
         this.salt = salt;
     }
+
+    static findOne(username) {
+        return connection.execute("SELECT * FROM users WHERE username = ?", [username])
+    }
 }
 
 
