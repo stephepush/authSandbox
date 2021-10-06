@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport'); //Todo (done): Install passport package
 const passwordUtils = require('../lib/passwordUtils');
+const genPassword = require('../lib/passwordUtils').genPassword
 const connection = require('../config/database');
 const User = require('../config/database'); //will need to resolve with mysql
 
@@ -9,11 +10,40 @@ const User = require('../config/database'); //will need to resolve with mysql
  * -------------- POST ROUTES ----------------
  */
 
-// Todo
+// Todo done
 router.post('login', passport.authenticate('local'), (req, res, next) => {});
 
 //Todo
-router.post('/register', (req, res, next) => {});
+router.post('/register', (req, res, next) => {
+    const saltHash = genPassword(req.body.pw);
+    /*^ passes collected password to genPassword from passwordUtils*/
+
+    const salt = saltHash.salt;
+    /* ^Holds value of salted saltHash 
+        returned from genPassword */
+
+    const hash = saltHash.hash;
+    /* ^Holds value of salted and hashed 
+        saltHash returned from genPassword */
+
+    const newUser = new User({
+        username: req.body.username,
+        //^takes username value entered from form
+        hash: hash,
+        //^stores salted and hashed password from line 25
+        salt: salt,
+        //^stores salted password from line 21
+        //admin: true
+    })
+
+    newUser.save()
+        //save is a method for the database
+        .then((user) => {
+            console.log(user)
+        });
+
+    res.redirect('/login'); //redirects back to login page
+});
 
 /**
  * -------------- GET ROUTES ----------------
