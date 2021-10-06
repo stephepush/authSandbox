@@ -20,8 +20,10 @@ class User {
     }
 
     static findOne(username) {
-        return connection.execute("SELECT * FROM users WHERE username = ?", [username])
-    }
+        return connection.execute(
+            "SELECT * FROM users WHERE username = ?", [username]
+        )
+    };
 }
 
 
