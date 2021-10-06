@@ -41,6 +41,7 @@ app.use(session({
 require('./config/passport')
 
 app.use(passport.initialize());
+//refreshes on every route change so things don';t get stale
 app.use(passport.session())
     /**
      * -------------- ROUTES ----------------
