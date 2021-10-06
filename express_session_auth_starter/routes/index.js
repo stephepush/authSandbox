@@ -10,7 +10,7 @@ const User = require('../config/database'); //will need to resolve with mysql
  */
 
 // Todo
-router.post('login', (req, res, next) => {});
+router.post('login', passport.authenticate('local'), (req, res, next) => {});
 
 //Todo
 router.post('/register', (req, res, next) => {});
