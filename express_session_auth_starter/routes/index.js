@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const passport = require('passport'); //Todo: Install passport package
+const passport = require('passport'); //Todo (done): Install passport package
 const passwordUtils = require('../lib/passwordUtils');
 const connection = require('../config/database');
 const User = require('../config/database'); //will need to resolve with mysql

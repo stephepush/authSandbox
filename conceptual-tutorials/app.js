@@ -19,7 +19,7 @@ const options = {
 
 const connection = mysql2.createPool(options).promise();
 const sessionStore = new MySQLStore({}, connection);
-//^ if you're wondering what connection refers to, look at line 20
+//^ connection
 
 //express-session session options
 app.use(session({
