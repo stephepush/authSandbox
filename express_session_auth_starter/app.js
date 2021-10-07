@@ -1,13 +1,13 @@
 const express = require('express');
 const session = require('express-session');
-const passport = require('passport')
-    //const crypto = require('crypto')
+const passport = require('passport');
+const crypto = require('crypto')
 const routes = require('./routes');
-const { connection } = require('./config/database')
+const connection = require('./config/database').connection
 
 const MySQLStore = require('express-mysql-session')(session);
 
-//require('./config/passport)
+require('./config/passport');
 //console.log(connection)
 //console.log(User)
 
@@ -38,7 +38,7 @@ app.use(session({
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
  */
-require('./config/passport')
+
 
 app.use(passport.initialize());
 //refreshes on every route change so things don';t get stale
