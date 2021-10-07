@@ -3,7 +3,7 @@ const passport = require('passport'); //Todo (done): Install passport package
 const passwordUtils = require('../lib/passwordUtils');
 const genPassword = require('../lib/passwordUtils').genPassword
 const connection = require('../config/database');
-const User = require('../config/database'); //will need to resolve with mysql
+const User = require('../config/database').User; //will need to resolve with mysql
 
 
 /**
@@ -26,22 +26,24 @@ router.post('/register', (req, res, next) => {
     /* ^Holds value of salted and hashed 
         saltHash returned from genPassword */
 
-    const newUser = new User({
-        username: req.body.username,
+    const username = req.body.username;
+
+    let newUser = new User(
+
+        username,
         //^takes username value entered from form
-        hash: hash,
+        hash,
         //^stores salted and hashed password from line 25
-        salt: salt,
+        salt,
         //^stores salted password from line 21
         //admin: true
-    })
+    )
 
     newUser.save()
+        /*         .then((user) => {
+                    console.log(user)
+                }); */
         //save is a method for the database
-        .then((user) => {
-            console.log(user)
-        });
-
     res.redirect('/login'); //redirects back to login page
 });
 
@@ -58,7 +60,7 @@ router.get('/login', (req, res, next) => {
 
     const form = '<h1>Login Page</h1><form method="POST" action="/login">\
     Enter Username:<br><input type="text" name="username">\
-    <br>Enter Password:<br><input type="password" name="password">\
+    <br>Enter Password:<br><input type="password" name="pw">\
     <br><br><input type="submit" value="Submit"></form>';
 
     res.send(form);
@@ -70,7 +72,7 @@ router.get('/register', (req, res, next) => {
 
     const form = '<h1>Register Page</h1><form method="post" action="register">\
                     Enter Username:<br><input type="text" name="username">\
-                    <br>Enter Password:<br><input type="password" name="password">\
+                    <br>Enter Password:<br><input type="password" name="pw">\
                     <br><br><input type="submit" value="Submit"></form>';
 
     res.send(form);
