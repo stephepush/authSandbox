@@ -15,15 +15,20 @@ whats found in the passport documentation
 its promisified and modularized to make the code easier
 to read*/
 const verifyCallback = (username, password, done) => {
-
-    User.findOne({ username: username })
-        /*User.findOne references static class method in
-        database.js*/
-        .then((user) => {
-            //^returns user
+    //console.log(username);
+    /*User.findOne references static class method in
+            database.js*/
+    User.findOne(username)
+        .then((dbRes) => {
+            console.log(dbRes[0][0]);
+            let user = dbRes[0][0];
             if (!user) { return done(null, false) }
             //no error, but also no user
-
+            console.log(
+                `user: ${user.username}
+                password: ${password},
+                hash: ${user.hash}, 
+                salt: ${user.salt}`)
             const isValid = validatesPassword(password, user.hash, user.salt)
                 //^comparing user entered password to hash and salt
 
