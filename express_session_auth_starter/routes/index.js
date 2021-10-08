@@ -11,7 +11,7 @@ const User = require('../config/database').User; //will need to resolve with mys
  */
 
 // Todo done
-router.post('login', passport.authenticate('local'), (req, res, next) => {});
+router.post('/login', passport.authenticate('local', { failureRedirect: "/login-failure", successRedirect: 'login-success' }));
 
 //Todo
 router.post('/register', (req, res, next) => {
@@ -40,10 +40,10 @@ router.post('/register', (req, res, next) => {
     )
 
     newUser.save()
-        /*         .then((user) => {
-                    console.log(user)
-                }); */
-        //save is a method for the database
+        .then((newUser) => {
+            console.log(newUser)
+        });
+    //save is a method for the database
     res.redirect('/login'); //redirects back to login page
 });
 
