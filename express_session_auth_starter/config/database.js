@@ -24,7 +24,7 @@ class User {
     static findOne(username) {
         //console.log(username + " from line 25 database.js")
         return connection.execute(
-            "SELECT username, salt, hash FROM users WHERE username = ?", [username]
+            "SELECT * FROM users WHERE username = ?", [username]
         )
     };
 
