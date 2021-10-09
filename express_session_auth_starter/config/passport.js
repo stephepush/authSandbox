@@ -54,8 +54,17 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser((userId, done) => {
+    console.log(userId)
     User.findById(userId)
-        .then((user) => {
+        .then((dbRes) => {
+            console.log(dbRes[0][0])
+            let user = {
+                user_id: dbRes[0][0].user_id,
+                username: dbRes[0][0].username,
+                hash: dbRes[0][0].hash,
+                salt: dbRes[0][0].salt,
+                admin: Boolean(dbRes[0][0].admin)
+            };
             done(null, user);
         })
         .catch(err => done(err))
