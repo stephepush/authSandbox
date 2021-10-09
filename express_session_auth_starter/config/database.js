@@ -28,6 +28,12 @@ class User {
         )
     };
 
+    static findById(id) {
+        return connection.execute(
+            "SELECT * FROM users WHERE username = ?", [id]
+        )
+    };
+
     save() {
         /*         return connection.execute(
                     "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)", [this.username, this.hash, this.salt] //do i need to use 'this'?
