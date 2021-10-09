@@ -30,7 +30,7 @@ class User {
 
     static findById(id) {
         return connection.execute(
-            "SELECT * FROM users WHERE username = ?", [id]
+            "SELECT user_id, username, hash, salt, admin FROM users WHERE user_id = ?", [id]
         )
     };
 
@@ -40,7 +40,7 @@ class User {
                 ) */
         try {
             return connection.execute(
-                "INSERT INTO users (username, hash, salt) VALUES (?, ?, ?)", [this.username, this.hash, this.salt] //do i need to use 'this'?,
+                "INSERT INTO users (username, hash, salt, admin) VALUES (?, ?, ?)", [this.username, this.hash, this.salt] //do i need to use 'this'?,
             ).catch(e => {
                 console.log('error', e);
             });
