@@ -40,7 +40,7 @@ class User {
                 ) */
         try {
             return connection.execute(
-                "INSERT INTO users (username, hash, salt, admin) VALUES (?, ?, ?)", [this.username, this.hash, this.salt] //do i need to use 'this'?,
+                "INSERT INTO users (username, hash, salt, admin) VALUES (?, ?, ?)", [this.username, this.hash, this.salt, this.admin] //do i need to use 'this'?,
             ).catch(e => {
                 console.log('error', e);
             });
