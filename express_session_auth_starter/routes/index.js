@@ -5,6 +5,7 @@ const genPassword = require('../lib/passwordUtils').genPassword
 const connection = require('../config/database');
 const User = require('../config/database').User; //will need to resolve with mysql
 const isAuth = require('./authMiddleWare').isAuth;
+const isAdmin = require('./authMiddleWare').isAdmin;
 
 /**
  * -------------- POST ROUTES ----------------
@@ -96,6 +97,10 @@ router.get('/protected-route', isAuth, (req, res, next) => {
         } else {
             res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
         } */
+});
+
+router.get('/admin-route', isAdmin, (req, res, next) => {
+    res.send('You made it to the admin route.');
 });
 
 
