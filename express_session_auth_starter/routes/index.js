@@ -4,7 +4,7 @@ const passwordUtils = require('../lib/passwordUtils');
 const genPassword = require('../lib/passwordUtils').genPassword
 const connection = require('../config/database');
 const User = require('../config/database').User; //will need to resolve with mysql
-
+const isAuth = require('./authMiddleWare').isAuth;
 
 /**
  * -------------- POST ROUTES ----------------
@@ -28,6 +28,8 @@ router.post('/register', (req, res, next) => {
 
     const username = req.body.username;
 
+    const admin = false;
+
     let newUser = new User(
 
         username,
@@ -36,7 +38,7 @@ router.post('/register', (req, res, next) => {
         //^stores salted and hashed password from line 25
         salt,
         //^stores salted password from line 21
-        //admin: true
+        admin
     )
 
     newUser.save()
@@ -86,14 +88,14 @@ router.get('/register', (req, res, next) => {
  * Also, look up what behaviour express session has without a maxage set
  */
 
-router.get('/protected-route', (req, res, next) => {
-
+router.get('/protected-route', isAuth, (req, res, next) => {
+    res.send('You made it to the route.');
     // This is how you check if a user is authenticated and protect a route.  You could turn this into a custom middleware to make it less redundant
-    if (req.isAuthenticated()) {
-        res.send('<h1>You are authenticated</h1><p><a href="/logout">Logout and reload</a></p>');
-    } else {
-        res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
-    }
+    /*     if (req.isAuthenticated()) {
+            res.send('<h1>You are authenticated</h1><p><a href="/logout">Logout and reload</a></p>');
+        } else {
+            res.send('<h1>You are not authenticated</h1><p><a href="/login">Login</a></p>');
+        } */
 });
 
 
