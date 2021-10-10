@@ -22,3 +22,5 @@ function genKeyPair() {
     fs.writeFileSync(__dirname + '/id_rsa_priv.pem', keyPair.privateKey);
 
 }
+
+genKeyPair();
