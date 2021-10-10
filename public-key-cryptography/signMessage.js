@@ -11,3 +11,12 @@ const myData = {
         a digitally signed message. This form of cryptography 
         doesn't hide data!`
 };
+
+//String version of data that can be hashed
+const myDataString = JSON.stringify(myData);
+
+//Sets value on the hash object
+hash.update(myDataString);
+
+//converts to hexadecimal
+const hashedData = hash.digest('hex');
