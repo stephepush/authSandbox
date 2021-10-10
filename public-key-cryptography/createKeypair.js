@@ -15,4 +15,10 @@ function genKeyPair() {
         }
     })
 
+    // Creates a public key file
+    fs.writeFileSync(__dirname + '/id_rsa_pub.pem', keyPair.publicKey);
+
+    // Creates a private key file
+    fs.writeFileSync(__dirname + '/id_rsa_priv.pem', keyPair.privateKey);
+
 }
