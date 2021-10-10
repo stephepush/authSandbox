@@ -4,6 +4,8 @@ const fs = require('fs');
 const encrypt = require('./encrypt');
 const decrypt = require('./decrypt');
 
+const homedir = require('os').homedir();
+
 const myData = {
     firstName: 'Stephen',
     lastName: 'Peters',
