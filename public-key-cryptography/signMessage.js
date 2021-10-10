@@ -20,3 +20,8 @@ hash.update(myDataString);
 
 //converts to hexadecimal
 const hashedData = hash.digest('hex');
+
+//const senderPrivateKey = fs.readFileSync(__dirname + 'id_rsa_priv.pem', 'utf8');
+const senderPrivateKey = fs.readFileSync(homedir + '/Documents/id_rsa_priv.pem', 'utf8');
+
+const signedMessage = encrypt.encryptWithPrivateKey(senderPrivateKey, hashedData);
