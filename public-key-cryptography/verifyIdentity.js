@@ -18,7 +18,7 @@ const originalHash = hash.update(JSON.stringify(receivedData.oringalData));
 
 const originalHexHash = hash.digest('hex');
 
-if (originalHash === decryptedMessageHex) {
+if (originalHexHash === decryptedMessageHex) {
     console.log('Success! The data has not been tampered with and the sender is valid.')
 } else {
     console.log('Uh oh... Someone is trying to manipulate the data or someone else knows the private key')
