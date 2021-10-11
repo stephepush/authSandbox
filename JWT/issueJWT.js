@@ -9,3 +9,11 @@ console.log(jwtParts);
 const headerInBase64UrlFormat = jwtParts[0];
 const payloadInBase64UrlFormat = jwtParts[1];
 const signatureInBase64UrlFormat = jwtParts[2];
+
+const decodedHeader = base64url.decode(headerInBase64UrlFormat);
+const decodedPayload = base64url.decode(payloadInBase64UrlFormat);
+const decodedSignature = base64url.decode(signatureInBase64UrlFormat);
+
+console.log(decodedHeader)
+console.log(decodedPayload)
+console.log(decodedSignature)
