@@ -1,0 +1,14 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "intro to JWT",
+  "main": "issueJWT.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stephen Peters",
+  "license": "ISC",
+  "dependencies": {
+    "base64url": "^3.0.1"
+  }
+}
